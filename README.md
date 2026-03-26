@@ -93,14 +93,6 @@ python3 ok -q 01         # 对每个子问题的测试
 python3 ok --score       # ok计算得分
 ```
 
-### Ants 相关链接
-
-| 说明 | 链接 |
-|------|------|
-| 学习笔记（单篇） | [知乎](https://zhuanlan.zhihu.com/p/2001753505514414611) |
-| 官方项目页（存档） | [insideempire…/proj/ants](https://insideempire.github.io/CS61A-Website-Archive/proj/ants/index.html) |
-| 教材 *Composing Programs* | [composingprograms.com](https://www.composingprograms.com/) |
-
 ---
 
 ## Hog（骰子游戏）
@@ -174,6 +166,15 @@ python3 ok -q 01     # 每个子问题的测试
 
 - **Python 3**（以本地通过 `ok` 为准）。
 - 各子项目依赖课程下发的 `gui_files/`、`ucb.py` 等，按官方说明运行即可。
+
+---
+
+## 相关链接
+
+| 说明 | 链接 |
+|------|------|
+| 官方项目页（存档） | [insideempire…/proj/ants](https://insideempire.github.io/CS61A-Website-Archive/proj/ants/index.html) |
+| 教材 *Composing Programs* | [composingprograms.com](https://www.composingprograms.com/) |
 
 ---
 
