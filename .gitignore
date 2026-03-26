@@ -1,6 +1,6 @@
-# 知乎文章离线存档（仅本地对照写作 README，勿提交至 GitHub）
-CS 61A Fall 2025 自学笔记(18) - 知乎.html
-CS 61A Fall 2025 自学笔记(18) - 知乎_files/
+# 知乎专栏文章离线 HTML（仅本地对照写作 README，勿提交；匹配任意子目录）
+**/*知乎.html
+**/*知乎_files/
 
 # Python / OK 本地状态（勿提交）
 __pycache__/
