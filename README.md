@@ -4,7 +4,6 @@
 
 **知乎专栏（总入口）**：[CS 61A 相关专栏](https://www.zhihu.com/column/c_1981023312877483099)
 
-> **仓库布局提示**：若你计划将本文件置于 GitHub 上名为 `CS61A` 的仓库根目录，请把 `README.md` 与 `.gitignore` 放在根目录，与各项目文件夹（如 `Ants/`、`Hogs/`）并列。当前若与工程文件同在一层，上传前按该结构移动即可。
 
 ---
 
@@ -63,10 +62,13 @@ Ants 项目的逐题记录与心得见专栏单篇：[CS 61A Fall 2025 自学笔
 以下内容与专栏文章一致，概括本人在 **`ants.py`** 中的实现与学习重点（**不含可照抄的完整题解代码**；细节与调试过程见上文单篇链接）：
 
 - **Phase 1**：为 `HarvesterAnt` / `ThrowerAnt` 配置食物成本并实现收割；补全 `Place.__init__` 的 **entrance** 链；重写 `ThrowerAnt.nearest_bee`，沿 **entrance** 向前搜索、跳过仍位于 **Hive** 的蜜蜂。调试中区分了 **`None` 与 `False`** 等判断陷阱；理清 **部署（deploy）时才扣食物**、与仅实例化蚂蚁的区别。
-- **Phase 2**：在 `ThrowerAnt` 上引入 **`lower_bound` / `upper_bound`**，实现 `ShortThrower` / `LongThrower`；修正循环条件，避免「距离未进入有效区间就永远不递增」的逻辑漏洞。实现 **`FireAnt.reduce_health`**：在必须用 **`super()`** 满足评测的前提下，处理**反弹伤害**与**阵亡额外伤害**，并避免对同一蜜蜂**重复调用** `reduce_health` 导致副作用重复。从零实现 **`WallAnt`**、**`HungryAnt`**（含咀嚼 **`cooldown`**，与 **`chew_cooldown`** 类属性的关系）。完成 **容器蚁** 三阶段：**`ContainerAnt`**（`store_ant`、`action`、`can_contain`）、**`Ant.add_to`** 的双蚁共存规则、**`BodyguardAnt`** 与 **`TankAnt`**（文章步骤与题面中的「护卫 / 容器」叙述一致）。总结抽象父类 → 调整基类行为 → 写具体子类的套路。
-- **Phase 3**：**`Water.add_insect`** 与 **`is_waterproof`**；**`ScubaThrower`**；**`QueenAnt`**（身后隧道伤害加倍、`double` 与「只加倍一次」、阵亡调用 **`ants_lose()`** 等）。可选 **EC** 部分在笔记中有展开；作者结语认为 **EC1 / EC2** 整体难度最高。
 
-**署名**：*（可在此填写 GitHub ID / 搭档信息）*
+
+- **Phase 2**：在 `ThrowerAnt` 上引入 **`lower_bound` / `upper_bound`**，实现 `ShortThrower` / `LongThrower`；修正循环条件，避免「距离未进入有效区间就永远不递增」的逻辑漏洞。实现 **`FireAnt.reduce_health`**：在必须用 **`super()`** 满足评测的前提下，处理**反弹伤害**与**阵亡额外伤害**，并避免对同一蜜蜂**重复调用** `reduce_health` 导致副作用重复。从零实现 **`WallAnt`**、**`HungryAnt`**（含咀嚼 **`cooldown`**，与 **`chew_cooldown`** 类属性的关系）。完成 **容器蚁** 三阶段：**`ContainerAnt`**（`store_ant`、`action`、`can_contain`）、**`Ant.add_to`** 的双蚁共存规则、**`BodyguardAnt`** 与 **`TankAnt`**（文章步骤与题面中的「护卫 / 容器」叙述一致）。总结抽象父类 → 调整基类行为 → 写具体子类的套路。
+
+
+- **Phase 3**：**`Water.add_insect`** 与 **`is_waterproof`**；**`ScubaThrower`**；**`QueenAnt`**（身后隧道伤害加倍、`double` 与「只加倍一次」、阵亡调用 **`ants_lose()`** 等）。可选 **EC** 部分在笔记中有展开；
+
 
 ### 游戏规则与玩法（简要）
 
