@@ -1,4 +1,4 @@
-# CS61A 课程仓库
+# CS61A 课程项目仓库
 
 本仓库用于归档加州大学伯克利分校 **CS 61A**（程序设计与抽象）相关的**课程项目**与个人笔记，目前收录 **Ants**、**Hog**、**Cats** 三个项目（**不包含** lab、homework、discussion 等其余课程文件）。
 
@@ -25,7 +25,7 @@ CS61A/                          # 仓库根目录
 ├── README.md
 ├── .gitignore
 ├── Ants/
-│   ├── ants_diagram.pdf        # （可选）课程方提供的官方流程图；若本地有则放入此路径
+│   ├── ants_diagram.pdf        # 课程设计流程图
 │   └── ants/                   # Ants 工程
 │       ├── ants.py
 │       ├── gui.py
@@ -68,7 +68,11 @@ Ants 项目的逐题记录与心得见专栏单篇：[CS 61A Fall 2025 自学笔
 以下内容与专栏文章一致，概括本人在 **`ants.py`** 中的实现与学习重点（**不含可照抄的完整题解代码**；细节见上文单篇链接）：
 
 - **Phase 1**：为 `HarvesterAnt` / `ThrowerAnt` 配置食物成本并实现收割；补全 `Place.__init__` 的 **entrance** 链；重写 `ThrowerAnt.nearest_bee`，沿 **entrance** 向前搜索、跳过仍位于 **Hive** 的蜜蜂。调试中区分 **`None` 与 `False`** 等判断陷阱；理清 **部署（deploy）时才扣食物**、与仅实例化蚂蚁的区别。
+
+
 - **Phase 2**：在 `ThrowerAnt` 上引入 **`lower_bound` / `upper_bound`**，实现 `ShortThrower` / `LongThrower`；修正循环条件，避免「距离未进入有效区间就永远不递增」的逻辑漏洞。实现 **`FireAnt.reduce_health`**：在必须用 **`super()`** 满足评测的前提下，处理**反弹伤害**与**阵亡额外伤害**，并避免对同一蜜蜂**重复调用** `reduce_health` 导致副作用重复。从零实现 **`WallAnt`**、**`HungryAnt`**（含咀嚼 **`cooldown`** 与 **`chew_cooldown`** 类属性）。完成 **容器蚁** 三阶段：**`ContainerAnt`**、**`Ant.add_to`**、**`BodyguardAnt`** 与 **`TankAnt`**。总结抽象父类 → 调整基类行为 → 写具体子类的套路。
+
+
 - **Phase 3**：**`Water.add_insect`** 与 **`is_waterproof`**；**`ScubaThrower`**；**`QueenAnt`**（身后隧道伤害加倍、`double` 与「只加倍一次」、阵亡 **`ants_lose()`** 等）。可选 **EC** 在笔记中有展开。
 
 ### 游戏规则与玩法（简要）
@@ -81,12 +85,12 @@ Ants 项目的逐题记录与心得见专栏单篇：[CS 61A Fall 2025 自学笔
 在 `Ants/ants/` 目录内：
 
 ```bash
-python3 gui.py
+python3 gui.py           # 可视化运行
 python3 gui.py -d hard
-python3 gui.py --water
+python3 gui.py --water   # 增加初始化状态
 python3 gui.py --food 10
-python3 ok -q 01
-python3 ok --score
+python3 ok -q 01         # 对每个子问题的测试
+python3 ok --score       # ok计算得分
 ```
 
 ### Ants 相关链接
@@ -116,6 +120,8 @@ python3 ok --score
 与专栏笔记一致的学习与实现要点（**无完整题解**）：
 
 - **Phase 1（规则与模拟）**：`roll_dice` 与测试骰子 **`make_test_dice`**（闭包、**`nonlocal`** 与循环序列）；**Boar Brawl** 得分增量；**`take_turn`** 组合掷骰与规则；**Sus Fuss** 相关（如 **`num_factors`**、**`sus_update`**）；**`play`** 中按回合交替调用双方 **strategy**、且每回合只调用一次当前玩家策略。
+
+
 - **Interlude / Phase 2**：用高阶函数做 **Printing**、**`interactive_strategy`** 等；**`always_roll`**；**`is_always_roll`**（注意循环变量范围与 **goal**）；**`make_averaged`**（**`*args`** 转发）；**`max_scoring_num_rolls`**（避免对同一测试骰子**连续调用**导致状态错位）；**`boar_strategy` / `sus_strategy`**；可选 **final_strategy**。
 
 ### 运行方式
@@ -123,10 +129,8 @@ python3 ok --score
 在 **`Hogs/hog/`** 目录下：
 
 ```bash
-python3 hog_ui.py
-python3 hog_ui.py -n 1
-python3 hog.py -r
-python3 ok -q 01
+python3 hog_ui.py  # 最终的可视化运行
+python3 ok -q 01   # 每个子问题的测试
 ```
 
 ---
@@ -148,7 +152,11 @@ python3 ok -q 01
 与专栏笔记一致的学习与实现要点（**无完整题解**）：
 
 - **Phase 1**：**`pick`**；返回高阶函数的 **`about`**（大小写、标点、**整词匹配**）；**`accuracy`**（`typed` / `source` 对齐与边界）；**`wpm`**。
+
+
 - **Phase 2（Autocorrect）**：**`autocorrect`**（词典命中、**`diff_function`** 与 **limit**）；**`furry_fixes`**（递归、早停以配合 limit）；**`minimum_mewtations`**（编辑距离型递归，理解题设给出的 **add/remove/substitute** 分支框架）。
+
+
 - **Phase 3（Multiplayer）**：按题面实现 **`time_per_word`**、**`fastest_words`** 等（笔记中讨论了列表推导的嵌套顺序与可读性）。
 
 ### 运行方式
@@ -156,8 +164,8 @@ python3 ok -q 01
 在 **`Cats/cats/`** 目录下：
 
 ```bash
-python3 cats_gui.py
-python3 ok -q 01
+python3 cats_gui.py  # 最终的可视化运行
+python3 ok -q 01     # 每个子问题的测试
 ```
 
 ---
